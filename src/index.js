@@ -43,7 +43,7 @@ export class Cosmos {
 			if (!bip39.default.validateMnemonic(mnemonic)) throw new Error("mnemonic phrases have invalid checksums");
 		}
 		const seed = bip39.default.mnemonicToSeed(mnemonic);
-		const node = bip32.default.fromSeed(seed)
+		const node = bip32.fromSeed(seed)
 		const child = node.derivePath(this.path)
 		const words = bech32.default.toWords(child.identifier);
 		return bech32.default.encode(this.bech32MainPrefix, words);
@@ -54,7 +54,7 @@ export class Cosmos {
 		    throw new Error("mnemonic expects a string")
 		}
 		const seed = bip39.default.mnemonicToSeed(mnemonic);
-		const node = bip32.default.fromSeed(seed);
+		const node = bip32.fromSeed(seed);
 		const child = node.derivePath(this.path);
 		return child.privateKey;
 	}
